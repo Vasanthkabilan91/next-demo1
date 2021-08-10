@@ -1,23 +1,32 @@
-FROM node:12
+# Building Stage 1
+FROM node:14-alpine as builder
 
-ENV PORT 3000
+RUN mkdir /workspace
 
-# Create app directory
-RUN mkdir /var/movable/ && mkdir /var/movable/app
-WORKDIR /var/movable/app
+WORKDIR /workspace
 
-RUN rm -rf .next*
-# Installing dependencies
-COPY package*.json /var/movable/app/
-RUN npm install
+COPY package.json yarn.lock ./
 
-# Copying source files
-COPY . /var/movable/app
+RUN yarn install
 
+#Copying source file
+COPY . .
 
-# Building app
-RUN npm run build
-EXPOSE 3000
+#building App
+RUN yarn build
 
-# Running the app
-CMD "npm" "run" "start_prod"
+FROM nginx:alpine
+
+#!/bin/sh
+
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Remove default nginx index page
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy from the stage 1
+COPY --from=builder /workspace/out /usr/share/nginx/html
+
+EXPOSE 3000 80
+
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
