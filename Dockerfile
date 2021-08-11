@@ -1,16 +1,16 @@
 # Building Stage 1
 FROM node:14-alpine as builder
 
-RUN mkdir /workspace
 
-WORKDIR /workspace
+
+WORKDIR /app
 
 COPY package.json yarn.lock ./
 
 RUN yarn install
 
 #Copying source file
-COPY . .
+COPY . ./
 
 #building App
 RUN yarn build
@@ -21,12 +21,9 @@ FROM nginx:alpine
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Remove default nginx index page
-RUN rm -rf /usr/share/nginx/html/*
-
 # Copy from the stage 1
-COPY --from=builder /workspace/out /usr/share/nginx/html
+COPY --from=builder /app/out /usr/share/nginx/html
 
-EXPOSE 3000 80
+EXPOSE 80
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
