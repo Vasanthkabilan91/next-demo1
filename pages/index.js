@@ -36,10 +36,9 @@ export default function Index() {
       </li>
       <li key={"post"}>
         <Link href="/user/empRoute" >
-            <a>{`POST`}</a>
+            <a>{`Post`}</a>
           </Link>
       </li>
-
     </ul>
   )
 }
