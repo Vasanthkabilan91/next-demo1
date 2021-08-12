@@ -15,20 +15,6 @@ export default function Index() {
 
   return (
     <ul>
-//       {data.map((user) => (
-//         <li key={user.id}>
-//           <Link href="/user/[id]" as={`/user/${user.id}`}>
-//             <a>{`User ${user.id}`}</a>
-//           </Link>
-//         </li>
-//       ))}
-//        {data.results.map((user) => (
-//         <li key={user.name}>
-//           <Link href="/user/[id]" as={`/user/${user.name}`}>
-//             <a>{`${user.name}`}</a>
-//           </Link>
-//         </li>
-//       ))} 
       <li key={"chart"}>
         <Link href="/user/chart" >
             <a>{`Chart`}</a>
