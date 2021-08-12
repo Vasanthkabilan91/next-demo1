@@ -7,7 +7,7 @@ import useSwr from 'swr';
 //const fetcher = url => axios.get(url).then(res => res.data);
 
 
-function empRoute()
+function EmpRoute()
 {
   
   const[empId,setId] = useState('');
@@ -110,4 +110,4 @@ function empRoute()
    
   }
 
-export default empRoute
+export default EmpRoute
