@@ -1,5 +1,6 @@
+import css from 'styled-jsx/css'
 
-
+export default css.global`
 .c3-axis-y > .domain {
     display: none !important;
   }
@@ -28,8 +29,4 @@
   .c3-tooltip th {
     background-color: inherit;
   }
-  
-  .c3-xgrid-focus, .c3-ygrid:last-child  {
-    stroke-dasharray: 3 3;
-  }
-  
+`;

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import C3Chart from "react-c3js";
 import "c3/c3.css";
-import "./chart.module.css";
+import globalStyles from './chart.styled.js'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -47,19 +47,21 @@ export default class App extends React.Component {
       },
       padding: {
         top: 40
-      }
+      },
+      size: { height: 240, width: 540}
     };
   }
 
   render() {
     return (
-      <div>
+      <div style={{backgroundColor : "inherit", opacity: "0.9"}}>
         <C3Chart
           data={this.state.chartData}
           grid={this.state.grid}
           point={this.state.point}
           legend={this.state.legend}
           padding={this.state.padding}
+          size={this.state.size}
           tooltip={{
             contents: function (
               d,
@@ -115,6 +117,9 @@ export default class App extends React.Component {
             }
           }}
         />
+        <style jsx global>
+          {globalStyles}
+        </style>
       </div>
     );
   }

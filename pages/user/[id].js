@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import useSwr from 'swr'
+import style from './user.module.css'
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
@@ -10,8 +11,8 @@ export default function User() {
     fetcher
   )
 
-  if (error) return <div>Failed to load user</div>
+  if (error) return <div >Failed to load user</div>
   if (!data) return <div>Loading...</div>
 
-  return <div>{data.name}</div>
+  return <div className={style.divDemo}>{data.name}</div>
 }

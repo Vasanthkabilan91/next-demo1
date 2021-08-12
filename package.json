@@ -12,6 +12,7 @@
     "react": "^17.0.2",
     "react-c3js": "^0.1.20",
     "react-dom": "^17.0.2",
+    "styled-components": "^5.3.0",
     "swr": "^0.1.18"
   },
   "license": "MIT",
