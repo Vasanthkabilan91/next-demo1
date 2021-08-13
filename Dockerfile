@@ -1,16 +1,20 @@
 # Building Stage 1
-FROM node:14-alpine as builder
+FROM node:14-slim as builder
 
 
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
+RUN chown node:node /app
+
+USER node
+
+COPY --chown=node:node package.json yarn.lock ./
 
 RUN yarn install
 
 #Copying source file
-COPY . ./
+COPY --chown=node:node . ./
 
 #building App
 RUN yarn build
