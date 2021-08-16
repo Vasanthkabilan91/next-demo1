@@ -1,7 +1,7 @@
 # Building Stage 1
 FROM node:14-slim as builder
 
-#Directory
+
 WORKDIR /app
 
 RUN chown node:node /app
